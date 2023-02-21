@@ -13,12 +13,17 @@
   },
   "dependencies": {
     "argon2": "^0.29.1",
+    "autoprefixer": "^10.4.13",
+    "css": "^3.0.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
     "pg": "^8.8.0",
+    "postcss": "^8.4.21",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tailwind": "^4.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",
@@ -34,6 +39,7 @@
     "eslint-plugin-html": "^7.1.0",
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "file-loader": "^6.2.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "livereload": "^0.9.3",
