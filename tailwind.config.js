@@ -1,19 +1,14 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
-  presets: [
-    require('@acmecorp/base-tailwind-config')
-  ],
   content: [
-    './client/src/**/*.{js,jsx,ts,tsx}',
-    './client/components/**/*.{js,jsts,jsx,tsx}',
-    './client/components/*.{jsx}'
+    './app/**/*.{js,ts,jsx,tsx}',
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+
+    // Or if using `src` directory:
+    './src/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
-    fontFamily: {
-      paytone: ['"Paytone One"', 'sans-serif'],
-      comfortaa: ['Comfortaa', 'cursive']
-    },
-    extend: {}
-  },
-  plugins: []
+    extend: {},
+    plugins: []
+  }
 };
