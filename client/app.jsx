@@ -5,6 +5,10 @@ import LeftText from './components/LeftText';
 import SignIn from './components/SignIn';
 
 export default function App() {
+  const route = {
+    path: 'sign-up'
+  };
+
   return (
     <div className='npm install file-loader --save-dev'>
       <Background/>
@@ -14,7 +18,8 @@ export default function App() {
           <LeftText />
         </div>
         <div className="basis-5/12">
-          <SignIn />
+          <SignIn
+            action={route.path}/>
         </div>
       </div>
     </div>

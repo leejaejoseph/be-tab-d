@@ -114,14 +114,6 @@
 }
 
 .button-login {
-  background-color: #838383;
-  width: 80%;
-  height: 15%;
-  font-size: 24px;
-  font-family: Comfortaa, cursive;
-  letter-spacing: 6.5%;
-  color: white;
-  border: none;
   border-radius: 10px;
   margin: 75px 50px 0;
   transition: 1s ease;
