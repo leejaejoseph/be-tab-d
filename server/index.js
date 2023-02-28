@@ -84,20 +84,21 @@ app.post(('/api/auth/my-files'), uploadsMiddleware, (req, res, next) => {
   db.query(sql, params)
     .then((result) => {
       const [user] = result.rows;
-      const { tableType, file } = user;
+      const { tableType, file, fileId } = user;
       const cells = file.split('\r\n');
-      const headerRow = cells[0].split(',');
-      const header = '"' + headerRow.join('", "') + '"';
+      // const headerRow = cells[0].split(',');
+      // const header = '"' + headerRow.join('", "') + '"';
 
       for (let i = 1; i < cells.length; i++) {
         const params = cells[i].split(',');
-        console.log(header);
+        const fileIdStr = fileId.toString();
+        const param = [params[0], params[1], params[2], params[3], fileIdStr];
         const sql = `
-          insert into "${tableType}" ("${header}")
-          values (${params})
+          insert into "${tableType}" ("firstName", "lastName", "course", "grade", "fileId")
+          values ($1, $2, $3, $4, $5)
           returning *
         `;
-        db.query(sql)
+        db.query(sql, param)
           .then((result) => res.status(201).json());
       }
 
