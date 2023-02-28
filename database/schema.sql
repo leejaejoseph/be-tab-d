@@ -14,3 +14,46 @@ create table "public"."login" (
   primary key ("userId"),
   unique ("username")
 );
+
+create table "public"."files" (
+  "fileId"         serial,
+  "userId"         integer not null,
+  "file"           text           not null,
+  "description"    text           not null,
+  "tableType"      text           not null,
+  "dateUploaded"   timestamptz(6) not null default now(),
+  primary key ("fileId"),
+  FOREIGN KEY ("userId") REFERENCES "login" ("userId")
+);
+
+create table "public"."teachers" (
+  "teacherId"         serial,
+  "teacherName"       text           not null,
+  "fileId"            integer        not null,
+
+  primary key ("teacherId"),
+  FOREIGN KEY ("fileId") REFERENCES "files" ("fileId")
+);
+
+create table "public"."students" (
+  "studentId"         serial,
+  "firstName"         text           not null,
+  "lastName"          text           not null,
+  "grade"             text           not null,
+  "course"            text           not null,
+  "fileId"            integer        not null,
+  primary key ("studentId"),
+  FOREIGN KEY ("fileId") REFERENCES "files" ("fileId")
+);
+
+create table "public"."courses" (
+  "courseId"         serial,
+  "courseName"       text           not null,
+  "teacherId"        integer        not null,
+  "fileId"           integer        not null,
+
+  primary key ("courseId"),
+  FOREIGN KEY ("teacherId") REFERENCES "teachers" ("teacherId"),
+  FOREIGN KEY ("fileId") REFERENCES "files" ("fileId")
+
+);
