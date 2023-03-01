@@ -27,7 +27,7 @@ create table "public"."files" (
 );
 
 create table "public"."teachers" (
-  "teacherId"         serial,
+  "teacherId"         text           not Null,
   "teacherName"       text           not null,
   "fileId"            integer        not null,
 
@@ -47,9 +47,9 @@ create table "public"."students" (
 );
 
 create table "public"."courses" (
-  "courseId"         serial,
+  "courseId"         text           not null,
   "courseName"       text           not null,
-  "teacherId"        integer        not null,
+  "teacherId"        text           not null,
   "fileId"           integer        not null,
 
   primary key ("courseId"),

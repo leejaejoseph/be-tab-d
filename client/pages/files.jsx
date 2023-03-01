@@ -4,7 +4,7 @@ import AppContext from '../lib/app-context';
 export default function Files() {
   const { user, route } = useContext(AppContext);
   const [description, setDescription] = useState('');
-  const [tableType, setTableType] = useState('');
+  const [tableType, setTableType] = useState('students');
   const url = useRef();
   const action = route.path;
 

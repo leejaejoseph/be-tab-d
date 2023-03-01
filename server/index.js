@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 require('dotenv/config');
 const pg = require('pg');
 const express = require('express');
@@ -86,19 +87,37 @@ app.post(('/api/auth/my-files'), uploadsMiddleware, (req, res, next) => {
       const [user] = result.rows;
       const { tableType, file, fileId } = user;
       const cells = file.split('\r\n');
-      // const headerRow = cells[0].split(',');
-      // const header = '"' + headerRow.join('", "') + '"';
+      let headers;
+      switch (tableType) {
+        case 'students':
+          headers = '"firstName", "lastName", "course", "grade", "fileId"';
+          break;
+        case 'courses':
+          headers = '"courseId", "courseName", "teacherId", "fileId"';
+          break;
+        case 'teachers':
+          headers = '"teacherName", "teacherId", "fileId"';
+          break;
+      }
 
       for (let i = 1; i < cells.length; i++) {
-        const params = cells[i].split(',');
+        const param = cells[i].split(',');
         const fileIdStr = fileId.toString();
-        const param = [params[0], params[1], params[2], params[3], fileIdStr];
+        const params = [...param, fileIdStr];
+        let values = '';
+        for (let i = 1; i < params.length + 1; i++) {
+          values += `$${i}`;
+          if (i !== params.length) {
+            values += ', ';
+          }
+
+        }
         const sql = `
-          insert into "${tableType}" ("firstName", "lastName", "course", "grade", "fileId")
-          values ($1, $2, $3, $4, $5)
+          insert into "${tableType}" (${headers})
+          values (${values})
           returning *
         `;
-        db.query(sql, param)
+        db.query(sql, params)
           .then((result) => res.status(201).json());
       }
 

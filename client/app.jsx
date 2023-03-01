@@ -6,7 +6,7 @@ import AppContext from './lib/app-context';
 import parseRoute from './lib/parse-route';
 import Login from './pages/login';
 import Files from './pages/files';
-import Table from './pages/tables';
+import Tables from './pages/tables';
 
 export default function App() {
   const [route, setRoute] = useState(parseRoute(window.location.hash));
@@ -33,7 +33,7 @@ export default function App() {
         );
       case ('tables'):
         return (
-          <Table/>
+          <Tables/>
         );
     }
   }
