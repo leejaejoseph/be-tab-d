@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps -- Run only once on mount */
 import React, { useCallback, useEffect, useState } from 'react';
 import throttle from 'lodash/throttle';
 
@@ -6,9 +7,7 @@ export default function Background() {
   useEffect(() => {
     document.addEventListener('mousemove', handleMouseMove);
     return () => document.removeEventListener('mousemove', handleMouseMove);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleMouseMove = useCallback(
     throttle((event) => {
       setMousePosition({ left: event.clientX, top: event.clientY });
