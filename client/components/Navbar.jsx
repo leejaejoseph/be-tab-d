@@ -1,18 +1,18 @@
 import React from 'react';
-// import logo from '../images/Icon.png';
+import logo from '../images/Icon.png';
 
 export default function Navbar() {
   return (
-    <div className='flex paytone py-10 flex-nowrap w-full justify-between'>
-      <a className='logo-anchor'>
-        {/* <img src={logo} className="w-10 h-10 inline-block"/> */}
-        <p className='inline-block paytone text-5xl m-0 text-slate-700'>be tab&apos;d</p>
+    <div className='flex comfortaa p-10 flex-nowrap w-full justify-between'>
+      <a href='#about' className='flex items-center gap-4'>
+        <img src={logo} className="w-10 h-10 inline-block"/>
+        <p className='inline-block paytone text-5xl m-0'>be tab&apos;d</p>
       </a>
-      <ul className='nav-items'>
-        <li className='nav-item'><a>My files</a></li>
-        <li className='nav-item'><a>About</a></li>
-        <li className='nav-item'><a>Sign In</a></li>
-        <li className='nav-button'><a>Sign Up</a></li>
+      <ul className='flex font-light items-center list-none m-0 p-0 justify-end text-2xl gap-6'>
+        <li><a href='#my-files'>My files</a></li>
+        <li><a href='#about'>About</a></li>
+        <li><a href='#sign-in'>Sign In</a></li>
+        <li className='rounded-3xl px-4 py-1 border-solid border-4'><a href='#sign-up'>Sign Up</a></li>
       </ul>
     </div>
   );
