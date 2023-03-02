@@ -1,5 +1,5 @@
-const extractHeader = require('./extract-header');
 const valuesCounter = require('./values-counter');
+const extractHeader = require('./extract-header');
 
 function uploadTables(param) {
   const { user, db } = param;
