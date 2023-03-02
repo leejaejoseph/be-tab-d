@@ -20,11 +20,11 @@ const app = express();
 app.use(staticMiddleware);
 app.use(express.json());
 
-app.post('/api/auth/sign-up', (req, res, next) => SignUp(req, res, next, db));
+app.post('/api/auth/sign-up', (req, res, next) => SignUp({ req, res, next, db }));
 
-app.post('/api/auth/sign-in', (req, res, next) => SignIn(req, res, next, db));
+app.post('/api/auth/sign-in', (req, res, next) => SignIn({ req, res, next, db }));
 
-app.post(('/api/auth/my-files'), uploadsMiddleware, (req, res, next) => UploadFiles(req, res, next, db));
+app.post(('/api/auth/my-files'), uploadsMiddleware, (req, res, next) => UploadFiles({ req, res, next, db }));
 
 app.use(errorMiddleware);
 

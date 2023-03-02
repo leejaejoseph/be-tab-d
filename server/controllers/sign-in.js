@@ -1,7 +1,8 @@
 const argon2 = require('argon2');
 const jwt = require('jsonwebtoken');
 
-function SignIn(req, res, next, db) {
+function SignIn(param) {
+  const { req, res, db } = param;
   const { username, password } = req.body;
 
   const sql = `

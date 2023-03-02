@@ -1,6 +1,7 @@
 const argon2 = require('argon2');
 
-function SignUp(req, res, next, db) {
+function SignUp(param) {
+  const { req, res, next, db } = param;
   const { username, password } = req.body;
   argon2
     .hash(password)
