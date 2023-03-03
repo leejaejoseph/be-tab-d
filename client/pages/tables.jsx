@@ -1,21 +1,33 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import AppContext from '../lib/app-context';
-import LeftText from '../components/LeftText';
-import SignIn from '../components/SignIn';
+import Tables from '../components/Tables';
+import organizedData from '../components/utilities/organized-data';
 
-export default function Tables() {
-  const { route, handleSignIn, user } = useContext(AppContext);
+export default function Files() {
+  const [get, setGet] = useState([]);
+  const { user, route } = useContext(AppContext);
+  const action = route.path;
+  const userId = user.userId;
+  const req = {
+    method: 'GET'
+  };
+
+  useEffect(() => {
+    fetch(`/api/auth/${action}/${userId}`, req)
+      .then((res) => res.json())
+      .then((data) => {
+        const organized = organizedData(data);
+        setGet(organized);
+      })
+      .catch((err) => console.error(err));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <div className='flex justify-between'>
-      <div className="basis-4/12">
-        <LeftText />
-      </div>
-      <div className="basis-5/12">
-        <SignIn
-          action={route.path}
-          onSignIn={handleSignIn}
-          user={user} />
-      </div>
+    <div>
+      <h1>Hello WORLD</h1>
+      <Tables
+        data={get}/>
     </div>
   );
 }

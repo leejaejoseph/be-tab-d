@@ -1,5 +1,4 @@
-import React, { useState, useContext } from 'react';
-import AppContext from '../lib/app-context';
+import React, { useState } from 'react';
 
 export default function SignIn({ action, onSignIn, user }) {
   const [username, setUsername] = useState('');
@@ -25,7 +24,6 @@ export default function SignIn({ action, onSignIn, user }) {
         }
       })
       .catch((err) => console.error(err))
-
     ;
   }
 

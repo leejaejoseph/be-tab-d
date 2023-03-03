@@ -8,7 +8,6 @@ export default function Background() {
     return () => document.removeEventListener('mousemove', handleMouseMove);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleMouseMove = useCallback(
     throttle((event) => {
       setMousePosition({ left: event.clientX, top: event.clientY });
