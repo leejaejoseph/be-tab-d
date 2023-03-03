@@ -22,9 +22,13 @@ export default function App() {
   function pageSelection() {
     const { path } = route;
     switch (path) {
-      case 'sign-in': case 'sign-up': return (<Login />);
-      case 'my-files': return (<Files />);
-      case 'my-tables': return (<Tables/>);
+      case 'sign-in':
+      case 'sign-up':
+        return (<Login />);
+      case 'my-files':
+        return (<Files />);
+      case 'my-tables':
+        return (<Tables/>);
     }
   }
 

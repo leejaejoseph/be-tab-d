@@ -1,4 +1,4 @@
-function organizedData(data) {
+export default function organizedData(data) {
   const tables = [];
   for (let i = 0; i < data[0].length; i++) {
     const table = [];
@@ -23,5 +23,3 @@ function organizedData(data) {
   }
   return tables;
 }
-
-module.exports = organizedData;
