@@ -24,7 +24,7 @@ export default function App() {
     switch (path) {
       case 'sign-in': case 'sign-up': return (<Login />);
       case 'my-files': return (<Files />);
-      case 'tables': return (<Tables/>);
+      case 'my-tables': return (<Tables/>);
     }
   }
 

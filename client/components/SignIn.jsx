@@ -24,7 +24,6 @@ export default function SignIn({ action, onSignIn, user }) {
         }
       })
       .catch((err) => console.error(err))
-
     ;
   }
 

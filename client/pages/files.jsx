@@ -31,12 +31,12 @@ export default function Files() {
         .catch((err) => console.error(err));
     });
     reader.readAsText(csvFile);
+    window.location.hash = 'my-tables';
+
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>Hello WORLD</h1>
-      <h2>Description</h2>
       <input type="file" ref={url} accept=".csv" />
       <input
         required

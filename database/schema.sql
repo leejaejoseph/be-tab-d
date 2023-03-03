@@ -35,17 +35,6 @@ create table "public"."teachers" (
   FOREIGN KEY ("fileId") REFERENCES "files" ("fileId")
 );
 
-create table "public"."students" (
-  "studentId"         serial,
-  "firstName"         text           not null,
-  "lastName"          text           not null,
-  "grade"             text           not null,
-  "course"            text           not null,
-  "fileId"            integer        not null,
-  primary key ("studentId"),
-  FOREIGN KEY ("fileId") REFERENCES "files" ("fileId")
-);
-
 create table "public"."courses" (
   "courseId"         text           not null,
   "courseName"       text           not null,
@@ -55,5 +44,16 @@ create table "public"."courses" (
   primary key ("courseId"),
   FOREIGN KEY ("teacherId") REFERENCES "teachers" ("teacherId"),
   FOREIGN KEY ("fileId") REFERENCES "files" ("fileId")
+);
 
+create table "public"."students" (
+  "studentId"         serial,
+  "firstName"         text           not null,
+  "lastName"          text           not null,
+  "grade"             text           not null,
+  "courseId"            text           not null,
+  "fileId"            integer        not null,
+  primary key ("studentId"),
+  FOREIGN KEY ("fileId") REFERENCES "files" ("fileId"),
+  FOREIGN KEY ("courseId") REFERENCES "courses" ("courseId")
 );

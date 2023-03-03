@@ -14,6 +14,14 @@ const storage = multer.diskStorage({
   }
 });
 
-const uploadsMiddleware = multer({ storage }).single('csv');
+const uploadsMiddleware = multer({
+  storage,
+  fileFilter: (req, file, callback) => {
+    if (!file.originalname.match(/\.csv$/)) {
+      return callback(new Error('Only CSV files are allowed!'));
+    }
+    callback(null, true);
+  }
+}).single('csv');
 
 module.exports = uploadsMiddleware;
