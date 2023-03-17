@@ -32,7 +32,7 @@ create table "public"."teachers" (
   "fileId"            integer        not null,
 
   primary key ("teacherId"),
-  FOREIGN KEY ("fileId") REFERENCES "files" ("fileId")
+  FOREIGN KEY ("fileId") REFERENCES "files" ("fileId") DEFERRABLE INITIALLY DEFERRED
 );
 
 create table "public"."courses" (
@@ -42,8 +42,8 @@ create table "public"."courses" (
   "fileId"           integer        not null,
 
   primary key ("courseId"),
-  FOREIGN KEY ("teacherId") REFERENCES "teachers" ("teacherId"),
-  FOREIGN KEY ("fileId") REFERENCES "files" ("fileId")
+  FOREIGN KEY ("teacherId") REFERENCES "teachers" ("teacherId") DEFERRABLE INITIALLY DEFERRED,
+  FOREIGN KEY ("fileId") REFERENCES "files" ("fileId") DEFERRABLE INITIALLY DEFERRED
 );
 
 create table "public"."students" (
@@ -54,6 +54,7 @@ create table "public"."students" (
   "courseId"            text           not null,
   "fileId"            integer        not null,
   primary key ("studentId"),
-  FOREIGN KEY ("fileId") REFERENCES "files" ("fileId"),
-  FOREIGN KEY ("courseId") REFERENCES "courses" ("courseId")
+  FOREIGN KEY ("fileId") REFERENCES "files" ("fileId") DEFERRABLE INITIALLY DEFERRED,
+  FOREIGN KEY ("courseId") REFERENCES "courses" ("courseId") DEFERRABLE INITIALLY DEFERRED
+
 );

@@ -1,4 +1,5 @@
 const uploadTables = require('./utilities/upload-tables');
+const handleData = require('./utilities/handle-data');
 
 function UploadFiles(param) {
   const { req, res, db } = param;
@@ -12,6 +13,7 @@ function UploadFiles(param) {
   db.query(sql, params)
     .then((result) => {
       const [user] = result.rows;
+      handleData({ user });
       uploadTables({ user, db });
       res.status(201).json(user);
     })

@@ -1,3 +1,7 @@
+/* body {
+  overflow: ;
+} */
+
 .paytone {
   font-family: "Paytone One", sans-serif;
 }
@@ -76,7 +80,6 @@
 
 .row {
   display: flex;
-  justify-content: space-between;
 }
 
 .logint {
@@ -113,7 +116,8 @@
   margin-bottom: 10px;
 }
 
-.button-login {
+.button-login,
+.button-upload {
   border-radius: 10px;
   margin: 75px 50px 0;
   transition: 1s ease;
@@ -121,4 +125,82 @@
 
 .button-login:hover {
   background-color: #7ecbc0;
+}
+
+.button-upload:hover {
+  transition: 0.3s;
+  background-color: #9ffff0;
+}
+
+.button-upload:active {
+  transition: 0.1s;
+  transform: translateY(2px);
+}
+
+.button-tables {
+  background-color: #ffd5e9;
+  border-radius: 50%;
+  height: 60px;
+  min-width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  transition: min-width 0.2s ease;
+}
+
+.button-tables:hover {
+  min-width: 200px;
+}
+
+.text-tables {
+  position: absolute;
+  top: 50%;
+  right: 25%;
+  transform: translateY(-50%);
+  padding: 0 10px;
+  white-space: nowrap;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.3s, opacity 0.1s;
+}
+
+.button-tables:hover .text-tables {
+  visibility: visible;
+  opacity: 1;
+}
+
+th,
+td {
+  padding: 5px 20px;
+}
+
+tr,
+th,
+td {
+  border: 2px solid black;
+}
+
+tr:nth-child(odd) {
+  background-color: rgba(212, 212, 212, 0.8);
+}
+
+tr:nth-child(even) {
+  background-color: #fff;
+}
+
+.line-table:nth-child(even) {
+  padding-top: 40px;
+  border-top: 2px;
+  border-style: solid;
+  border-color: grey;
+}
+
+input::file-selector-button {
+
+}
+
+.full {
+  display: block;
+  width: 100%;
 }
