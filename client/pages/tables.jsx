@@ -25,7 +25,6 @@ export default function Files() {
 
   return (
     <div>
-      <h1>Hello WORLD</h1>
       <Tables
         data={get}/>
     </div>
