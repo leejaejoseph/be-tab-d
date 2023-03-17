@@ -7,7 +7,7 @@ import AppContext from '../lib/app-context';
 export default function Files() {
   const { user, route } = useContext(AppContext);
   const [description, setDescription] = useState('');
-  const [tableType, setTableType] = useState('students');
+  const [tableType, setTableType] = useState('teachers');
   const url = useRef();
   const action = route.path;
 
@@ -40,12 +40,15 @@ export default function Files() {
         body: objects
       };
       fetch(`/api/auth/${action}`, req)
-        .then((res) => res.json())
+        .then((res) => {
+          res.json();
+        })
         .catch((err) => console.error(err));
+      const form = event.target;
+      form.reset();
+      setTableType('teachers');
     });
     reader.readAsText(csvFile);
-    window.location.hash = 'my-tables';
-
   }
 
   return (
