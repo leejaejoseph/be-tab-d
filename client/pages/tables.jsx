@@ -3,6 +3,11 @@ import AppContext from '../lib/app-context';
 import Tables from '../components/Tables';
 import organizedData from '../components/utilities/organized-data';
 
+/**
+ * @returns displays relational tables starting from primary key of all csv files.
+ * The function uses the appcontext's user and gets the tables for the files
+ * uploaded by the user.
+ */
 export default function Files() {
   const [get, setGet] = useState([]);
   const { user, route } = useContext(AppContext);
@@ -12,6 +17,13 @@ export default function Files() {
     method: 'GET'
   };
 
+  /**
+   * Runs a get request at mount of file fetching all files under UserID.
+   * OrganizedData gets called in order to organize all files into organized arrays
+   * ordered by primary to foreign key relationships.
+   *
+   * State array is updated to hold return of method
+   */
   useEffect(() => {
     fetch(`/api/auth/${action}/${userId}`, req)
       .then((res) => res.json())
@@ -22,10 +34,9 @@ export default function Files() {
       .catch((err) => console.error(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  // State array is passed as a property of data.
   return (
     <div>
-      <h1>Hello WORLD</h1>
       <Tables
         data={get}/>
     </div>

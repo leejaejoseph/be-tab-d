@@ -1,3 +1,8 @@
+/**
+ * taking the first row as the parameter and split by commas, the header structured
+ * for sql usage is formatted here as a string and returned.
+ */
+
 function extractHeader(headers, num) {
   let returnString = '';
 

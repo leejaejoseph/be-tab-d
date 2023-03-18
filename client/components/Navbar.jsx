@@ -1,3 +1,8 @@
+/**
+ * This component is the navbar where the logo links to the about while the other
+ * individual anchors link to specific hash pages
+ */
+
 import React from 'react';
 import logo from '../images/Icon.png';
 

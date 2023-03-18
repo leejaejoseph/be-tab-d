@@ -1,3 +1,16 @@
+/**
+ * Whilst this function is set to take hardcoded keys along with the schema.sql
+ * set with primary keys, this function is the main function updated to actually
+ * display csv tables into relations by automatically grabbing key.
+ *
+ * In terms of functionality, the table grabs the teacherId as its main primary
+ * key and looks to the second table or 'courses' and matches its teacherID to
+ * course table. If the teacherId doesn't match, it goes next. Then to the final
+ * tables which is the 'students' table, the courseId from courses is the foreign
+ * key tying students into the whole relational table.
+ * The tables are organized into arrays of teachers, courses, students under
+ * different teacherIDs.
+ */
 export default function organizedData(data) {
   const tables = [];
   for (let i = 0; i < data[0].length; i++) {
