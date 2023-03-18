@@ -1,13 +1,21 @@
 import React, { useContext, useState, useRef } from 'react';
 import AppContext from '../lib/app-context';
 
+/**
+ * @returns form object taking csv file, a tabletype, and description.
+ */
 export default function Files() {
   const { user, route } = useContext(AppContext);
   const [description, setDescription] = useState('');
-  const [tableType, setTableType] = useState('teachers');
+  const [tableType, setTableType] = useState('students');
   const url = useRef();
   const action = route.path;
 
+  /**
+ * Utilizing the AppContext to get the ID of the user and putting the id into a
+ * form object along with the description, tabletype, and file. The object is then
+ * fetched to push into the database under the correct UserId.
+ */
   function handleSubmit(event) {
     event.preventDefault();
     const userId = user.userId;
@@ -16,9 +24,14 @@ export default function Files() {
     objects.append('description', description);
     objects.append('tableType', tableType);
 
+    // by using the ref from the file uploaded, the variable stores the data
     const csvFile = url.current.files[0];
-    const reader = new FileReader();
 
+    /**
+     * The fileReader listens for a loaded file and uses the readAsText to read the contents of the file.
+     * Then taking the file appended to objects, a fetch request to post the objects is made.
+    */
+    const reader = new FileReader();
     reader.addEventListener('load', () => {
       objects.append('file', reader.result);
 
@@ -27,15 +40,12 @@ export default function Files() {
         body: objects
       };
       fetch(`/api/auth/${action}`, req)
-        .then((res) => {
-          res.json();
-        })
+        .then((res) => res.json())
         .catch((err) => console.error(err));
-      const form = event.target;
-      form.reset();
-      setTableType('teachers');
     });
     reader.readAsText(csvFile);
+    window.location.hash = 'my-display';
+
   }
 
   return (
@@ -50,7 +60,7 @@ export default function Files() {
           className=''
           onSubmit={handleSubmit}>
           <div>
-            <input className="full" type="file" ref={url} accept=".csv"/>
+            <input className="full" type="file" ref={url} accept=".csv" />
           </div>
           <div className="row pt-5 flex-wrap">
             <label
@@ -88,8 +98,8 @@ export default function Files() {
       </div>
       <div className="mt-10 mx-auto flex justify-end button-wrapper w-7/12">
         <button
-              className="button-tables flex-nowrap bg-[#ffd5e9] h-14 w-14 rounded-full"
-          onClick={() => { window.location.hash = 'my-tables'; }}>
+          className="button-tables flex-nowrap bg-[#ffd5e9] h-14 w-14 rounded-full"
+          onClick={() => { window.location.hash = 'my-display'; }}>
           <p
             className="text-tables text-xl">View Tables</p>
           <i className="fa fa-chevron-right text-2xl pr-5" aria-hidden="true" />

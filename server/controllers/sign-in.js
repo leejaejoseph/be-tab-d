@@ -1,6 +1,11 @@
 const argon2 = require('argon2');
 const jwt = require('jsonwebtoken');
 
+/**
+ * sign-in.js is a server sided module taking the request parameter's and taking
+ * the input from SignIn.jsx's form and passing to sql the parameters of username
+ * and password.
+ */
 function SignIn(param) {
   const { req, res, db } = param;
   const { username, password } = req.body;
@@ -12,13 +17,19 @@ function SignIn(param) {
       `;
   const params = [username];
 
+  /**
+ * This query takes the resulting userId and checks if its password hashed is
+ * equivalent utilizing argon2's verify. This verification is done by querying the
+ * postgreSQL database. It then returns an object containing the username and userId
+ * under payload and the token so that it can be stored in window's local storage.
+ */
   db.query(sql, params)
     .then((result) => {
       if (!result.rows[0]) {
-        res.status(401).json('invalid login');
+        return res.status(401).json('invalid login');
       } else {
         const { userId, hashedPassword } = result.rows[0];
-        argon2
+        return argon2
           .verify(hashedPassword, password)
           .then((isMatching) => {
             if (isMatching) {
@@ -27,9 +38,9 @@ function SignIn(param) {
                 username
               };
               const token = jwt.sign(payload, process.env.TOKEN_SECRET);
-              res.status(200).json({ user: payload, token });
+              return res.status(200).json({ user: payload, token });
             } else {
-              res.status(401).json('invalid login');
+              return res.status(401).json('invalid login');
             }
           })
           .catch((err) => console.error(err));

@@ -1,3 +1,11 @@
+/**
+ * Taking data as a parameter, it checks to see if the header row contains double
+ * quotes and throws if it does include it. The headers are then split per comma.
+ * The data row checks to see if the data contains a comma inside of a quote and
+ * excludes it from the split use Regex and checks to see if data.length has more
+ * or less amount of rows than the header row and throws using the error middleware.
+ */
+
 const ClientError = require('../../error-middleware');
 function handleData(data) {
   const { user } = (data);

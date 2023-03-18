@@ -1,24 +1,29 @@
-const valuesCounter = require('./values-counter');
-const extractHeader = require('./extract-header');
+const uploadTables = require('./utilities/upload-tables');
 
-function uploadTables(param) {
-  const { user, db } = param;
-  const { tableType, file, fileId } = user;
-  const rows = file.split('\r\n');
-  const headersArray = rows[0].split(',');
-  const headers = extractHeader(headersArray, headersArray.length);
-
-  for (let i = 1; i < rows.length; i++) {
-    const param = rows[i].split(',');
-    const params = [...param, fileId];
-    const values = valuesCounter(headersArray.length + 1);
-    const sql = `
-            insert into "${tableType}" (${headers})
-            values (${values})
-            returning *
-          `;
-    db.query(sql, params);
-  }
+/**
+ * using the objects packaged in the server's files.jsx page, the object is destructured
+ * to append into the database. Taking the userID as a main primary key, and description,
+ * tabletype, file as other data, stored, a query is made using upload-tables utilities
+ * to actually parse the files into its own tables using tableType as its foreign key.
+ */
+function UploadFiles(param) {
+  const { req, res, db } = param;
+  const { userId, description, tableType, file } = req.body;
+  const params = [userId, description, tableType, file];
+  const sql = `
+          insert into "files" ("userId", "description", "tableType", "file")
+          values ($1, $2, $3, $4)
+          returning *
+        `;
+  db.query(sql, params)
+    .then((result) => {
+      const [user] = result.rows;
+      uploadTables({ user, db });
+      res.status(201).json(user);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
 
-module.exports = uploadTables;
+module.exports = UploadFiles;
