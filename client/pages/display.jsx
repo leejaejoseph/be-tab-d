@@ -16,7 +16,6 @@ export default function Display() {
   const req = {
     method: 'GET'
   };
-
   /**
    * Runs a get request at mount of file fetching all files under UserID.
    * OrganizedData gets called in order to organize all files into organized arrays
