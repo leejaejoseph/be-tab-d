@@ -1,3 +1,10 @@
+/**
+ * ViewTables takes the params from index.js as queried by the client, destructuring
+ * the request, result, and database. Taking the userId from the request, the function
+ * is used to grab the tableType, fileId, and use the result to grab the individual
+ * files with the same tableType and collect all the same tabletypes under one array.
+ */
+
 async function ViewTables(param) {
   const { req, res, db } = param;
   const { userId } = req.params;
