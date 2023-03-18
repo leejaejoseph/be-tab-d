@@ -37,7 +37,7 @@ export default function App() {
       case 'my-files':
         return (<Files />);
       case 'my-display':
-        return (<Tables />);
+        return (<Display />);
     }
   }
   // Handle the Sign-In button to update the current user state and shift hash to route to my-files page

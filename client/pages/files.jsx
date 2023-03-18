@@ -7,7 +7,7 @@ import AppContext from '../lib/app-context';
 export default function Files() {
   const { user, route } = useContext(AppContext);
   const [description, setDescription] = useState('');
-  const [tableType, setTableType] = useState('students');
+  const [tableType, setTableType] = useState('teachers');
   const url = useRef();
   const action = route.path;
 
@@ -30,7 +30,7 @@ export default function Files() {
     /**
      * The fileReader listens for a loaded file and uses the readAsText to read the contents of the file.
      * Then taking the file appended to objects, a fetch request to post the objects is made.
-    */
+     */
     const reader = new FileReader();
     reader.addEventListener('load', () => {
       objects.append('file', reader.result);
@@ -44,8 +44,6 @@ export default function Files() {
         .catch((err) => console.error(err));
     });
     reader.readAsText(csvFile);
-    window.location.hash = 'my-display';
-
   }
 
   return (
