@@ -1,5 +1,16 @@
 import React from 'react';
+<<<<<<< HEAD
 // this utility is where I actually take the values of their rows for displaying on the react page.
+=======
+/**
+ * Being the React Component for Tables, this component destructures the parameter
+ * for the data variable containing organized arrays by one primary key from the
+ * organized-tables.js utility.
+ * Then mapping through the data and attaining the headers, the table renders
+ * the amount of tableTypes per different primary keys and displays the relational
+ * tables.
+ */
+>>>>>>> e708553 (Added documentation to project.)
 export default function Tables({ data }) {
   const rowTables = [];
   for (let i = 0; i < data.length; i++) {
@@ -34,7 +45,7 @@ export default function Tables({ data }) {
           Table {i + 1}
         </h2>
         <div
-        className='row mt-5 mb-20'>
+          className='row mt-5 mb-20'>
           {tables}
         </div>
       </div>);

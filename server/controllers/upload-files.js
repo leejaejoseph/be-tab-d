@@ -1,5 +1,4 @@
 const uploadTables = require('./utilities/upload-tables');
-const handleData = require('./utilities/handle-data');
 
 /**
  * using the objects packaged in the server's files.jsx page, the object is destructured
@@ -19,7 +18,6 @@ function UploadFiles(param) {
   db.query(sql, params)
     .then((result) => {
       const [user] = result.rows;
-      handleData({ user });
       uploadTables({ user, db });
       res.status(201).json(user);
     })

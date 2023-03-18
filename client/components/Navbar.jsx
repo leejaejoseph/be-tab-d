@@ -10,7 +10,7 @@ export default function Navbar() {
   return (
     <div className='flex comfortaa p-10 flex-nowrap w-full justify-between'>
       <a href='#about' className='flex items-center gap-4'>
-        <img src={logo} className="w-10 h-10 inline-block"/>
+        <img src={logo} className="w-10 h-10 inline-block" />
         <p className='inline-block paytone text-5xl m-0'>be tab&apos;d</p>
       </a>
       <ul className='flex font-light items-center list-none m-0 p-0 justify-end text-2xl gap-6'>

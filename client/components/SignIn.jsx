@@ -67,7 +67,7 @@ export default function SignIn({ action, onSignIn, user }) {
         <input
           onChange={(event) => setUsername(event.target.value)}
           type="text"
-          className='text-2xl bg-transparent pl-1 !outline-none border-0 border-solid border-b-2 border-[#646464] w-full mb-7'/>
+          className='text-2xl bg-transparent pl-1 !outline-none border-0 border-solid border-b-2 border-[#646464] w-full mb-7' />
         <div className="text-xl text-[#323232] pb-1 mb-0 pl-1">
           Password
         </div>

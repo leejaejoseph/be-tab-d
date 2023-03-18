@@ -51,7 +51,7 @@ app.post(('/api/auth/my-files'), uploadsMiddleware, (req, res, next) => UploadFi
  * @returns {response} returns data of files in database and displays tables
  * @throws {error} userId invalid or auth invalid
  */
-app.get(('/api/auth/my-tables/:userId'), (req, res, next) => ViewTables({ req, res, next, db }));
+app.get(('/api/auth/my-display/:userId'), (req, res, next) => ViewTables({ req, res, next, db }));
 
 app.use(errorMiddleware);
 

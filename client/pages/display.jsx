@@ -8,7 +8,7 @@ import organizedData from '../components/utilities/organized-data';
  * The function uses the appcontext's user and gets the tables for the files
  * uploaded by the user.
  */
-export default function Files() {
+export default function Display() {
   const [get, setGet] = useState([]);
   const { user, route } = useContext(AppContext);
   const action = route.path;
@@ -38,7 +38,7 @@ export default function Files() {
   return (
     <div>
       <Tables
-        data={get}/>
+        data={get} />
     </div>
   );
 }

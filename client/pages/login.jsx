@@ -19,7 +19,7 @@ export default function Login() {
         <SignIn
           action={route.path}
           onSignIn={handleSignIn}
-          user={user}/>
+          user={user} />
       </div>
     </div>
   );

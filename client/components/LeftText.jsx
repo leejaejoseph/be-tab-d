@@ -1,3 +1,7 @@
+/**
+ * This only returns a text div for the login page.
+ */
+
 import React from 'react';
 
 export default function LeftText() {

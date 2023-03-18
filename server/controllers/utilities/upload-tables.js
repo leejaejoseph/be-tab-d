@@ -1,37 +1,29 @@
-const valuesCounter = require('./values-counter');
-const extractHeader = require('./extract-header');
+const uploadTables = require('./utilities/upload-tables');
 
 /**
- * UploadTables takes the parametered object and destructures the inner objects
- * into variables. the main functionality of taking headers and using it within
- * sql insert is done by callign the extract-headers.js which is the first row in
- * the csv. The rows are split into arrays using \r\n and further split to individual
- * cells using commas.
+ * using the objects packaged in the server's files.jsx page, the object is destructured
+ * to append into the database. Taking the userID as a main primary key, and description,
+ * tabletype, file as other data, stored, a query is made using upload-tables utilities
+ * to actually parse the files into its own tables using tableType as its foreign key.
  */
-function uploadTables(param) {
-  const { user, db } = param;
-  const { tableType, file, fileId } = user;
-  const rows = file.split('\r\n');
-  const headersArray = rows[0].split(',');
-  const headers = extractHeader(headersArray, headersArray.length);
-
-  /**
-   * after getting the array of headers, the parameters with using tableType as
-   * keys table and using the individual values in the cell by separating by commas
-   * after row 1, every row is the pushed into the database under the tableType.
-   */
-  for (let i = 1; i < rows.length; i++) {
-    const param = rows[i].split(',');
-    const params = [...param, fileId];
-    // valuesCounter is used to create a string for parameters in length of the header count.
-    const values = valuesCounter(headersArray.length + 1);
-    const sql = `
-            insert into "${tableType}" (${headers})
-            values (${values})
-            returning *
-          `;
-    db.query(sql, params);
-  }
+function UploadFiles(param) {
+  const { req, res, db } = param;
+  const { userId, description, tableType, file } = req.body;
+  const params = [userId, description, tableType, file];
+  const sql = `
+          insert into "files" ("userId", "description", "tableType", "file")
+          values ($1, $2, $3, $4)
+          returning *
+        `;
+  db.query(sql, params)
+    .then((result) => {
+      const [user] = result.rows;
+      uploadTables({ user, db });
+      res.status(201).json(user);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
 
-module.exports = uploadTables;
+module.exports = UploadFiles;

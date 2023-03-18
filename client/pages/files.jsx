@@ -7,7 +7,7 @@ import AppContext from '../lib/app-context';
 export default function Files() {
   const { user, route } = useContext(AppContext);
   const [description, setDescription] = useState('');
-  const [tableType, setTableType] = useState('teachers');
+  const [tableType, setTableType] = useState('students');
   const url = useRef();
   const action = route.path;
 
@@ -40,15 +40,12 @@ export default function Files() {
         body: objects
       };
       fetch(`/api/auth/${action}`, req)
-        .then((res) => {
-          res.json();
-        })
+        .then((res) => res.json())
         .catch((err) => console.error(err));
-      const form = event.target;
-      form.reset();
-      setTableType('teachers');
     });
     reader.readAsText(csvFile);
+    window.location.hash = 'my-display';
+
   }
 
   return (
@@ -102,7 +99,11 @@ export default function Files() {
       <div className="mt-10 mx-auto flex justify-end button-wrapper w-7/12">
         <button
           className="button-tables flex-nowrap bg-[#ffd5e9] h-14 w-14 rounded-full"
+<<<<<<< HEAD
           onClick={() => { window.location.hash = 'my-tables'; }}>
+=======
+          onClick={() => { window.location.hash = 'my-display'; }}>
+>>>>>>> e708553 (Added documentation to project.)
           <p
             className="text-tables text-xl">View Tables</p>
           <i className="fa fa-chevron-right text-2xl pr-5" aria-hidden="true" />

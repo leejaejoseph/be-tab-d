@@ -13,7 +13,7 @@ import AppContext from './lib/app-context';
 import parseRoute from './lib/parse-route';
 import Login from './pages/login';
 import Files from './pages/files';
-import Tables from './pages/tables';
+import Display from './pages/display';
 
 export default function App() {
   // State variables for current route based on hash and current user
@@ -36,8 +36,8 @@ export default function App() {
         return (<Login />);
       case 'my-files':
         return (<Files />);
-      case 'my-tables':
-        return (<Tables/>);
+      case 'my-display':
+        return (<Tables />);
     }
   }
   // Handle the Sign-In button to update the current user state and shift hash to route to my-files page
@@ -53,7 +53,7 @@ export default function App() {
 
   return (
     <AppContext.Provider value={contextObject}>
-      <Background/>
+      <Background />
       <Navbar />
       <div className='w-11/12 m-0-auto'>
         {pageSelection()}
