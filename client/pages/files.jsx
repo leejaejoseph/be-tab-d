@@ -1,15 +1,16 @@
-import React, { useContext, useState, useRef } from 'react';
-import AppContext from '../lib/app-context';
-
 /**
  * @returns form object taking csv file, a tabletype, and description.
  */
+
+import React, { useContext, useState, useRef } from 'react';
+import AppContext from '../lib/app-context';
+
 export default function Files() {
-  const { user, route } = useContext(AppContext);
+  const { currentUser, currentRoute } = useContext(AppContext);
   const [description, setDescription] = useState('');
   const [tableType, setTableType] = useState('teachers');
   const url = useRef();
-  const action = route.path;
+  const action = currentRoute.path;
 
   /**
  * Utilizing the AppContext to get the ID of the user and putting the id into a
@@ -18,7 +19,7 @@ export default function Files() {
  */
   function handleSubmit(event) {
     event.preventDefault();
-    const userId = user.userId;
+    const userId = currentUser.userId;
     const objects = new FormData();
     objects.append('userId', userId);
     objects.append('description', description);
@@ -55,12 +56,11 @@ export default function Files() {
 
       <div className='self-center mx-auto mt-20 p-10 rounded-3xl comfortaa w-7/12 bg-[#E6E6E6]/[.7]'>
         <form
-          className=''
           onSubmit={handleSubmit}>
           <div>
             <input className="full" type="file" ref={url} accept=".csv" />
           </div>
-          <div className="row pt-5 flex-wrap">
+          <div className="flex pt-5 flex-wrap">
             <label
               htmlFor='description'>Description</label>
             <textarea
@@ -72,7 +72,7 @@ export default function Files() {
               }}
             />
           </div>
-          <div className="row justify-end pt-5 px-5 gap-5">
+          <div className="flex justify-end pt-5 px-5 gap-5">
             <label
               className='pt-2'
               htmlFor='tableType'>Table Type</label>
@@ -97,7 +97,7 @@ export default function Files() {
       <div className="mt-10 mx-auto flex justify-end button-wrapper w-7/12">
         <button
           className="button-tables flex-nowrap bg-[#ffd5e9] h-14 w-14 rounded-full"
-          onClick={() => { window.location.hash = 'my-display'; }}>
+          onClick={() => { window.location.hash = 'my-tables'; }}>
           <p
             className="text-tables text-xl">View Tables</p>
           <i className="fa fa-chevron-right text-2xl pr-5" aria-hidden="true" />

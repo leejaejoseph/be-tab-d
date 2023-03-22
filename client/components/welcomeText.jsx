@@ -1,10 +1,10 @@
 /**
- * This only returns a text div for the login page.
+ * This only returns a text div for the authPage.
  */
 
 import React from 'react';
 
-export default function LeftText() {
+export default function WelcomeText() {
   return (
     <div className='mt-36 flex flex-col gap-3'>
       <p className="comfortaa text-7xl font-bold text-[#676767] mb-16">

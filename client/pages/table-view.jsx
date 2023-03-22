@@ -1,18 +1,19 @@
-import React, { useContext, useState, useEffect } from 'react';
-import AppContext from '../lib/app-context';
-import Tables from '../components/Tables';
-import organizedData from '../components/utilities/organized-data';
-
 /**
- * @returns displays relational tables starting from primary key of all csv files.
+ * displays relational tables starting from primary key of all csv files.
  * The function uses the appcontext's user and gets the tables for the files
  * uploaded by the user.
  */
-export default function Display() {
+
+import React, { useContext, useState, useEffect } from 'react';
+import AppContext from '../lib/app-context';
+import Tables from '../components/tables';
+import organizedData from '../components/utilities/organized-data';
+
+export default function TableView() {
   const [get, setGet] = useState([]);
-  const { user, route } = useContext(AppContext);
-  const action = route.path;
-  const userId = user.userId;
+  const { currentUser, currentRoute } = useContext(AppContext);
+  const action = currentRoute.path;
+  const userId = currentUser.userId;
   const req = {
     method: 'GET'
   };

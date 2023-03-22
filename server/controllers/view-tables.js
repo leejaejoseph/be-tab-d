@@ -5,7 +5,7 @@
  * files with the same tableType and collect all the same tabletypes under one array.
  */
 
-async function ViewTables(param) {
+async function viewTables(param) {
   const { req, res, db } = param;
   const { userId } = req.params;
   const tableTypeAggregate = {};
@@ -42,4 +42,4 @@ async function ViewTables(param) {
   res.status(200).json(returnArray);
 }
 
-module.exports = ViewTables;
+module.exports = viewTables;

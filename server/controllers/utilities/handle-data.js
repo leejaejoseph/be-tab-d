@@ -5,8 +5,8 @@
  * excludes it from the split use Regex and checks to see if data.length has more
  * or less amount of rows than the header row and throws using the error middleware.
  */
-
 const ClientError = require('../../error-middleware');
+
 function handleData(data) {
   const { user } = (data);
   const csv = user.file;

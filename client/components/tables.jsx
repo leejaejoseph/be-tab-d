@@ -1,4 +1,3 @@
-import React from 'react';
 /**
  * Being the React Component for Tables, this component destructures the parameter
  * for the data variable containing organized arrays by one primary key from the
@@ -7,6 +6,8 @@ import React from 'react';
  * the amount of tableTypes per different primary keys and displays the relational
  * tables.
  */
+import React from 'react';
+
 export default function Tables({ data }) {
   const rowTables = [];
   for (let i = 0; i < data.length; i++) {

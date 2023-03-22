@@ -5,7 +5,7 @@ import React, { useState } from 'react';
  * Depending on the action parameter, the form will be a submission for signup
  * or signin.
  */
-export default function SignIn({ action, onSignIn, user }) {
+export default function AuthForm({ action, onSignIn, user }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
@@ -52,7 +52,7 @@ export default function SignIn({ action, onSignIn, user }) {
     <form
       onSubmit={handleSubmit}
       className="my-10 rounded-3xl comfortaa h bg-[#E6E6E6]/[.4] items-center">
-      <div className='m-0-auto w-9/12'>
+      <div className='mx-auto my-0 w-9/12'>
         <div className="text-4xl text-[#555] text-center pt-32">
           {(action === 'sign-in') ? 'Sign-In' : 'Sign-Up'}
         </div>

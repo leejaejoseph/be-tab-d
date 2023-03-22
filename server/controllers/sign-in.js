@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
  * the input from SignIn.jsx's form and passing to sql the parameters of username
  * and password.
  */
-function SignIn(param) {
+function signIn(param) {
   const { req, res, db } = param;
   const { username, password } = req.body;
 
@@ -48,4 +48,4 @@ function SignIn(param) {
     });
 }
 
-module.exports = SignIn;
+module.exports = signIn;

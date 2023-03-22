@@ -6,38 +6,45 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
+import Navbar from './components/navbar';
 import jwtDecode from 'jwt-decode';
-import Background from './components/Background';
+import Background from './components/background';
 import AppContext from './lib/app-context';
 import parseRoute from './lib/parse-route';
-import Login from './pages/login';
+import AuthPage from './pages/auth-page';
 import Files from './pages/files';
-import Display from './pages/display';
+import TableView from './pages/table-view';
+import About from './pages/about';
 
 export default function App() {
   // State variables for current route based on hash and current user
-  const [route, setRoute] = useState(parseRoute(window.location.hash));
-  const [user, setUser] = useState();
+  const [currentRoute, setCurrentRoute] = useState(parseRoute(window.location.hash));
+  const [currentUser, setCurrentUser] = useState();
   // Set up event listener to swap pages on hashchange and verify user's login status
   useEffect(() => {
-    window.addEventListener('hashchange', () => setRoute(parseRoute(window.location.hash)));
-    const token = window.localStorage.getItem('react-context-jwt');
+    const handleHashChange = () => setCurrentRoute(parseRoute(window.location.hash));
+    window.addEventListener('hashchange', handleHashChange);
+    const token = window.localStorage.getItem('login-token');
     const user = token ? jwtDecode(token) : null;
-    setUser(user);
+    setCurrentUser(user);
+    return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
   // Swap pages on hash change based on AppContext.Provider states.
-  function pageSelection() {
-    const { path } = route;
+  function selectPage() {
+    const { path } = currentRoute;
     switch (path) {
       case 'sign-in':
       case 'sign-up':
-        return (<Login />);
+        return (<AuthPage />);
       case 'my-files':
         return (<Files />);
-      case 'my-display':
-        return (<Display />);
+      case 'my-tables':
+        return (<TableView />);
+      case 'about':
+        return (<About/>);
+      default:
+        return (<About />);
     }
   }
   // Handle the Sign-In button to update the current user state and shift hash to route to my-files page
@@ -45,18 +52,18 @@ export default function App() {
     const { user, token } = result;
     window.localStorage.setItem('login-token', token);
     window.location.hash = 'my-files';
-    setUser(user);
+    setCurrentUser(user);
   }
 
   // Create an object with the context to be shared between components
-  const contextObject = { user, route, handleSignIn };
+  const contextObject = { currentUser, currentRoute, handleSignIn };
 
   return (
     <AppContext.Provider value={contextObject}>
       <Background />
       <Navbar />
-      <div className='w-11/12 m-0-auto'>
-        {pageSelection()}
+      <div className='w-11/12 my-0 mx-auto'>
+        {selectPage()}
       </div>
     </AppContext.Provider>
   );
