@@ -88,7 +88,7 @@ export default function Files() {
             </select>
           </div>
           <div className="w-full flex justify-center mt-10">
-            <button type="submit" className="button-upload m-0 bg-white w-9/12 rounded-2xl border-2 border-gray-500 py-3">
+            <button type="submit" className="button-upload rounded-lg m-0 bg-white w-9/12 rounded-2xl border-2 border-gray-500 py-3">
               Upload
             </button>
           </div>
@@ -96,10 +96,10 @@ export default function Files() {
       </div>
       <div className="mt-10 mx-auto flex justify-end button-wrapper w-7/12">
         <button
-          className="button-tables flex-nowrap bg-[#ffd5e9] h-14 w-14 rounded-full"
+          className="button-tables flex flex-nowrap bg-[#ffd5e9] h-14 rounded-full"
           onClick={() => { window.location.hash = 'my-tables'; }}>
           <p
-            className="text-tables text-xl">View Tables</p>
+            className="text-tables absolute py-0 px-3 top-1/2 invisible whitespace-nowrap right-1/4 text-tables text-xl">View Tables</p>
           <i className="fa fa-chevron-right text-2xl pr-5" aria-hidden="true" />
         </button>
       </div>

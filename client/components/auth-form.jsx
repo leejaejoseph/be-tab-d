@@ -80,10 +80,12 @@ export default function AuthForm({ action, onSignIn, user }) {
             {(action === 'sign-in') ? 'Create an Account' : 'Already have an Account'}
           </a>
         </div>
-        <button
-          className='mb-6 text-white w-3/4 py-4 text-2xl bg-[#838383] hover:bg-[#7ecbc0] hover:tracking-wider button-login'>
-          Let&apos;s get started
-        </button>
+        <div className="w-full flex justify-center mt-4">
+          <button
+            className='rounded-xl mb-6 text-white w-3/4 py-4 text-2xl bg-[#838383] hover:bg-[#7ecbc0] hover:tracking-wider button-login'>
+            Let&apos;s get started
+          </button>
+        </div>
       </div>
     </form>
   );
