@@ -5,10 +5,10 @@ const express = require('express');
 const staticMiddleware = require('./static-middleware');
 const errorMiddleware = require('./error-middleware');
 const uploadsMiddleware = require('./uploads-middleware');
-const SignUp = require('./controllers/sign-up');
-const SignIn = require('./controllers/sign-in');
-const UploadFiles = require('./controllers/upload-files');
-const ViewTables = require('./controllers/view-tables');
+const signUp = require('./controllers/sign-up');
+const signIn = require('./controllers/sign-in');
+const uploadFiles = require('./controllers/upload-files');
+const viewTables = require('./controllers/view-tables');
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -27,7 +27,7 @@ app.use(express.json());
  * @returns {response} that user was created with user promise result
  * @throws {error} if user has similar login already.
  */
-app.post('/api/auth/sign-up', (req, res, next) => SignUp({ req, res, next, db }));
+app.post('/api/auth/sign-up', (req, res, next) => signUp({ req, res, next, db }));
 
 /**
  * Takes Sign in form and checks login in Database.
@@ -35,7 +35,7 @@ app.post('/api/auth/sign-up', (req, res, next) => SignUp({ req, res, next, db })
  * @returns {response} that user login and password matched with user promise result of userID
  * @throws {error} if login is invalid
  */
-app.post('/api/auth/sign-in', (req, res, next) => SignIn({ req, res, next, db }));
+app.post('/api/auth/sign-in', (req, res, next) => signIn({ req, res, next, db }));
 
 /**
  * Takes UserId and uploaded files along with parameters that go into files list.
@@ -43,7 +43,7 @@ app.post('/api/auth/sign-in', (req, res, next) => SignIn({ req, res, next, db })
  * @returns {response} that file uploaded to database
  * @throws {error} file is not a CSV
  */
-app.post(('/api/auth/my-files'), uploadsMiddleware, (req, res, next) => UploadFiles({ req, res, next, db }));
+app.post(('/api/auth/my-files'), uploadsMiddleware, (req, res, next) => uploadFiles({ req, res, next, db }));
 
 /**
  * Takes UserId and displays relational table grabbing from every file user uploaded
@@ -51,7 +51,7 @@ app.post(('/api/auth/my-files'), uploadsMiddleware, (req, res, next) => UploadFi
  * @returns {response} returns data of files in database and displays tables
  * @throws {error} userId invalid or auth invalid
  */
-app.get(('/api/auth/my-display/:userId'), (req, res, next) => ViewTables({ req, res, next, db }));
+app.get(('/api/auth/my-tables/:userId'), (req, res, next) => viewTables({ req, res, next, db }));
 
 app.use(errorMiddleware);
 

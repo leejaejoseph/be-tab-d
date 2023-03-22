@@ -37,7 +37,7 @@ export default function Background() {
       <div className='overflow-hidden absolute w-screen h-screen -z-20'>
         <div
           style={{ left: mousePosition.left, top: mousePosition.top }}
-          className="radial-blob -z-20"
+          className="radial-blob w-4/12 aspect-square rounded-full absolute -z-20"
         />
       </div>
       <div className="fixed w-screen h-screen backdrop-blur-3xl -z-10" />

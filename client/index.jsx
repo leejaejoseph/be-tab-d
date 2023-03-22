@@ -1,5 +1,5 @@
 /**
- * This file is the start for the React applicationm rendering the App component
+ * This file is the start for the React application rendering the App component
  * to the root DOM element with the ID 'root'.
  */
 

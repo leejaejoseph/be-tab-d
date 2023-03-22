@@ -7,7 +7,7 @@ const handleData = require('./utilities/handle-data');
  * tabletype, file as other data, stored, a query is made using upload-tables utilities
  * to actually parse the files into its own tables using tableType as its foreign key.
  */
-function UploadFiles(param) {
+function uploadFiles(param) {
   const { req, res, db } = param;
   const { userId, description, tableType, file } = req.body;
   const params = [userId, description, tableType, file];
@@ -28,4 +28,4 @@ function UploadFiles(param) {
     });
 }
 
-module.exports = UploadFiles;
+module.exports = uploadFiles;

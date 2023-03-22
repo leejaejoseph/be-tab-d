@@ -6,7 +6,7 @@ const argon2 = require('argon2');
  * and password to signup. It checks to see if there are errors on whether the
  * username already exists.
  */
-function SignUp(param) {
+function signUp(param) {
   const { req, res, db } = param;
   const { username, password } = req.body;
   return argon2
@@ -33,4 +33,4 @@ function SignUp(param) {
     });
 }
 
-module.exports = SignUp;
+module.exports = signUp;
