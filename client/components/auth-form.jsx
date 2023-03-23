@@ -51,7 +51,7 @@ export default function AuthForm({ action, onSignIn, user }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="my-10 rounded-3xl comfortaa h bg-[#E6E6E6]/[.4] items-center">
+      className="my-10 rounded-3xl comfortaa h-full bg-[#E6E6E6]/[.4] items-center">
       <div className='mx-auto my-0 w-9/12'>
         <div className="text-4xl text-[#555] text-center pt-32">
           {(action === 'sign-in') ? 'Sign-In' : 'Sign-Up'}
