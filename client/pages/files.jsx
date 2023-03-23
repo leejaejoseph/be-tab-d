@@ -54,7 +54,7 @@ export default function Files() {
         Upload your files when ready
       </div>
 
-      <div className='self-center mx-auto mt-20 p-10 rounded-3xl comfortaa w-7/12 bg-[#E6E6E6]/[.7]'>
+      <div className='self-center mx-auto mt-20 p-10 rounded-3xl comfortaa w-11/12 md:w-7/12 bg-[#E6E6E6]/[.7]'>
         <form
           onSubmit={handleSubmit}>
           <div>
@@ -94,12 +94,19 @@ export default function Files() {
           </div>
         </form>
       </div>
-      <div className="mt-10 mx-auto flex justify-end button-wrapper w-7/12">
+      <div className="mt-10 md:mx-auto px-6 flex justify-end button-wrapper md:w-7/12 md: px-0">
         <button
-          className="button-tables flex flex-nowrap bg-[#ffd5e9] h-14 rounded-full"
+          className="button-tables hidden md:flex flex-nowrap bg-[#ffd5e9] h-14 rounded-full "
           onClick={() => { window.location.hash = 'my-tables'; }}>
           <p
             className="text-tables absolute py-0 px-3 top-1/2 invisible whitespace-nowrap right-1/4 text-tables text-xl">View Tables</p>
+          <i className="fa fa-chevron-right text-2xl pr-5" aria-hidden="true" />
+        </button>
+        <button
+          className="button-tables md:hidden flex flex-nowrap bg-[#ffd5e9] h-14 rounded-full "
+          onClick={() => { window.location.hash = 'my-tables'; }}>
+          <p
+            className="py-0 px-3 whitespace-nowrap right-1/4 text-xl">View Tables</p>
           <i className="fa fa-chevron-right text-2xl pr-5" aria-hidden="true" />
         </button>
       </div>

@@ -12,16 +12,29 @@ import AppContext from '../lib/app-context';
 export default function AuthPage() {
   const { currentRoute, handleSignIn, currentUser } = useContext(AppContext);
   return (
-    <div className='flex justify-between'>
-      <div className="basis-4/12">
-        <WelcomeText />
+    <>
+      <div className='hidden md:flex flex-col md:flex-row md:justify-between'>
+        <div className="w-4/12">
+          <WelcomeText />
+        </div>
+        <div className="w-5/12">
+          <AuthForm
+            action={currentRoute.path}
+            onSignIn={handleSignIn}
+            user={currentUser} />
+        </div>
       </div>
-      <div className="basis-5/12">
-        <AuthForm
-          action={currentRoute.path}
-          onSignIn={handleSignIn}
-          user={currentUser} />
+      <div className='md:hidden'>
+        <div className="w-full auth-components">
+          <WelcomeText />
+        </div>
+        <div className="w-full auth-components">
+          <AuthForm
+            action={currentRoute.path}
+            onSignIn={handleSignIn}
+            user={currentUser} />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
