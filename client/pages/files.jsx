@@ -50,7 +50,7 @@ export default function Files() {
   return (
     <div>
       <div
-        className='text-4xl text-center comfortaa my-24'>
+        className='text-2xl md:text-4xl text-center comfortaa my-12 md:my-24'>
         Upload your files when ready
       </div>
 
@@ -78,7 +78,7 @@ export default function Files() {
               htmlFor='tableType'>Table Type</label>
             <select
               id='tableType'
-              className='w-60 h-10 text-center border-solid border-gray-500 border-2 rounded-xl'
+              className='w-60 h-10 text-center border-solid border-gray-500 border-2 rounded-xl mt-3 md:mt-0'
               onChange={(event) => {
                 setTableType(event.target.value);
               }}>
@@ -88,7 +88,7 @@ export default function Files() {
             </select>
           </div>
           <div className="w-full flex justify-center mt-10">
-            <button type="submit" className="button-upload rounded-lg m-0 bg-white w-9/12 rounded-2xl border-2 border-gray-500 py-3">
+            <button type="submit" className="button-upload rounded-lg m-0 bg-white w-full md:w-9/12 rounded-2xl border-2 border-gray-500 py-3">
               Upload
             </button>
           </div>

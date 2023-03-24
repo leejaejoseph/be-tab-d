@@ -11,6 +11,7 @@ create table "public"."login" (
   "username"       text           not null,
   "hashedPassword" text           not null,
   "createdAt"      timestamptz(6) not null default now(),
+
   primary key ("userId"),
   unique ("username")
 );
@@ -22,6 +23,7 @@ create table "public"."files" (
   "description"    text           not null,
   "tableType"      text           not null,
   "dateUploaded"   timestamptz(6) not null default now(),
+
   primary key ("fileId"),
   FOREIGN KEY ("userId") REFERENCES "login" ("userId")
 );
@@ -30,8 +32,10 @@ create table "public"."teachers" (
   "teacherId"         text           not Null,
   "teacherName"       text           not null,
   "fileId"            integer        not null,
+  "userId"            integer        not null,
 
-  primary key ("teacherId"),
+  primary key ("teacherId", "userId"),
+  FOREIGN KEY ("userId") REFERENCES "login" ("userId"),
   FOREIGN KEY ("fileId") REFERENCES "files" ("fileId") DEFERRABLE INITIALLY DEFERRED
 );
 
@@ -40,9 +44,11 @@ create table "public"."courses" (
   "courseName"       text           not null,
   "teacherId"        text           not null,
   "fileId"           integer        not null,
+  "userId"           integer        not null,
 
-  primary key ("courseId"),
-  FOREIGN KEY ("teacherId") REFERENCES "teachers" ("teacherId") DEFERRABLE INITIALLY DEFERRED,
+  primary key ("courseId", "userId"),
+  FOREIGN KEY ("userId") REFERENCES "login" ("userId"),
+  FOREIGN KEY ("teacherId", "userId") REFERENCES "teachers" ("teacherId", "userId") DEFERRABLE INITIALLY DEFERRED,
   FOREIGN KEY ("fileId") REFERENCES "files" ("fileId") DEFERRABLE INITIALLY DEFERRED
 );
 
@@ -51,10 +57,12 @@ create table "public"."students" (
   "firstName"         text           not null,
   "lastName"          text           not null,
   "grade"             text           not null,
-  "courseId"            text           not null,
+  "courseId"          text           not null,
   "fileId"            integer        not null,
-  primary key ("studentId"),
-  FOREIGN KEY ("fileId") REFERENCES "files" ("fileId") DEFERRABLE INITIALLY DEFERRED,
-  FOREIGN KEY ("courseId") REFERENCES "courses" ("courseId") DEFERRABLE INITIALLY DEFERRED
+  "userId"            integer        not null,
 
+  primary key ("studentId", "userId"),
+  FOREIGN KEY ("userId") REFERENCES "login" ("userId"),
+  FOREIGN KEY ("fileId") REFERENCES "files" ("fileId") DEFERRABLE INITIALLY DEFERRED,
+  FOREIGN KEY ("courseId", "userId") REFERENCES "courses" ("courseId", "userId") DEFERRABLE INITIALLY DEFERRED
 );

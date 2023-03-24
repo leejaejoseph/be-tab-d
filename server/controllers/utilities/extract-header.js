@@ -9,7 +9,7 @@ function extractHeader(headers, num) {
   for (let i = 0; i < num; i++) {
     returnString += `"${headers[i]}", `;
   }
-  returnString += '"fileId"';
+  returnString += '"fileId", "userId"';
   return returnString;
 }
 module.exports = extractHeader;

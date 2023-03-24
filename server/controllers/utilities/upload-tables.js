@@ -10,7 +10,7 @@ const extractHeader = require('./extract-header');
  */
 function uploadTables(param) {
   const { user, db } = param;
-  const { tableType, file, fileId } = user;
+  const { tableType, file, fileId, userId } = user;
   const rows = file.split('\r\n');
   const headersArray = rows[0].split(',');
   const headers = extractHeader(headersArray, headersArray.length);
@@ -22,9 +22,9 @@ function uploadTables(param) {
    */
   for (let i = 1; i < rows.length; i++) {
     const param = rows[i].split(',');
-    const params = [...param, fileId];
+    const params = [...param, fileId, userId];
     // valuesCounter is used to create a string for parameters in length of the header count.
-    const values = valuesCounter(headersArray.length + 1);
+    const values = valuesCounter(headersArray.length + 2);
     const sql = `
             insert into "${tableType}" (${headers})
             values (${values})
