@@ -53,7 +53,7 @@ export default function AuthForm({ action, onSignIn, user }) {
       onSubmit={handleSubmit}
       className="my-10 rounded-3xl comfortaa h-full bg-[#E6E6E6]/[.4] items-center">
       <div className='mx-auto my-0 w-9/12'>
-        <div className="text-4xl text-[#555] text-center pt-32">
+        <div className="text-4xl text-[#555] text-center pt-10 md:pt-32">
           {(action === 'sign-in') ? 'Sign-In' : 'Sign-Up'}
         </div>
         <div className={errorMessage ? 'text-[#FF0000]' : 'hidden'}>
@@ -61,7 +61,7 @@ export default function AuthForm({ action, onSignIn, user }) {
         </div>
         <div
           required
-          className="mt-28 text-xl text-[#323232] pb-1 mb-0 pl-1">
+          className="mt-16 md:mt-28 text-xl text-[#323232] pb-1 mb-0 pl-1">
           Username
         </div>
         <input
@@ -82,7 +82,7 @@ export default function AuthForm({ action, onSignIn, user }) {
         </div>
         <div className="w-full flex justify-center mt-4">
           <button
-            className='rounded-xl mb-6 text-white w-3/4 py-4 text-2xl bg-[#838383] hover:bg-[#7ecbc0] hover:tracking-wider button-login'>
+            className='rounded-xl mb-6 text-white w-3/4 py-4 md:text-2xl bg-[#838383] hover:bg-[#7ecbc0] hover:tracking-wider button-login'>
             Let&apos;s get started
           </button>
         </div>
