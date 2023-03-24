@@ -38,6 +38,9 @@ export default function App() {
       case 'sign-up':
         return (<AuthPage />);
       case 'my-files':
+        if (currentUser === null) {
+          window.location.hash = 'sign-in';
+        }
         return (<Files />);
       case 'my-tables':
         return (<TableView />);
