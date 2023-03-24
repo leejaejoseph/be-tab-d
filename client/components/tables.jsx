@@ -9,6 +9,13 @@
 import React from 'react';
 
 export default function Tables({ data }) {
+  if (!data) {
+    return (
+      <div className='text-[#fabcff] text-5xl comfortaa'>
+        Please upload files
+      </div>
+    );
+  }
   const rowTables = [];
   for (let i = 0; i < data.length; i++) {
     const tables = [];

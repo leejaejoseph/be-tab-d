@@ -37,8 +37,7 @@ export default function TableView() {
   // State array is passed as a property of data.
   return (
     <div>
-      <Tables
-        data={get} />
+      <Tables data={get}/>
     </div>
   );
 }
