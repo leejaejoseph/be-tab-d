@@ -11,9 +11,10 @@ import React from 'react';
 export default function Tables({ data }) {
   if (!data) {
     return (
-      <div className='text-[#fabcff] text-5xl comfortaa'>
+      <div className='flex justify-center align-center text-center text-4xl text-[#f069c3] comfortaa'>
         Please upload files
       </div>
+
     );
   }
   const rowTables = [];
