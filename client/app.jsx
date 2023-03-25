@@ -54,8 +54,8 @@ export default function App() {
   function handleSignIn(result) {
     const { user, token } = result;
     window.localStorage.setItem('login-token', token);
-    window.location.hash = 'my-files';
     setCurrentUser(user);
+    window.location.hash = 'my-files';
   }
 
   // Create an object with the context to be shared between components
