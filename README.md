@@ -38,4 +38,4 @@ https://user-images.githubusercontent.com/116613246/227737090-475e1144-37f2-4bef
 - Database: PostgreSQL
 
 ## Instructions
-Go to the directories and install the csv for students, teachers, and courses. Enter [be-tab-d.youngjae.me](be-tab-d.youngjae.me), go to the sign-up page, sign-in then input the files for the teacher's csv first, input a description, and enter the table's type [teachers], repeat for courses, then for students. Click on the view tables button and view.
+Go to the repository and under 'downloads' and install the csv for students, teachers, and courses. Enter [be-tab-d.youngjae.me](be-tab-d.youngjae.me), go to the sign-up page, sign-in then input the files for the teacher's csv first, input a description, and enter the table's type [teachers], repeat for courses, then for students. Click on the view tables button and view.
