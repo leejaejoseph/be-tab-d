@@ -39,3 +39,6 @@ https://user-images.githubusercontent.com/116613246/227737090-475e1144-37f2-4bef
 
 ## Instructions
 Go to the repository and under 'downloads' and install the csv for students, teachers, and courses. Enter [be-tab-d.youngjae.me](be-tab-d.youngjae.me), go to the sign-up page, sign-in then input the files for the teacher's csv first, input a description, and enter the table's type [teachers], repeat for courses, then for students. Click on the view tables button and view.
+
+To run in personal computer, download repository and install necessary dependencies with npm -i. Most of the development side can be viewed with npm run dev, but in terms of starting up the database and creating PostgreSQL, you will need to run 'sudo service postgresql start', 'npm run db:import', pgweb --db=csvDatabase'. In the console you can open the database on localhost set to port 8081. For seeing the page npm run dev to view on localhost:3000. Go to the repository and under 'downloads' and install the csv for students, teachers, and courses. Go to the sign-up page, sign-in then input the files for the teacher's csv first, input a description, and enter the table's type [teachers], repeat for courses, then for students. Click on the view tables button and view.
+
