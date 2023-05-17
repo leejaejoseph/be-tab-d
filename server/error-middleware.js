@@ -1,4 +1,4 @@
-const ClientError = require('./client-error');
+const ClientError = require('./public/client-error');
 
 function errorMiddleware(err, req, res, next) {
   if (err instanceof ClientError) {
